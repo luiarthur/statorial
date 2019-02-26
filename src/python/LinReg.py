@@ -4,6 +4,7 @@ from torch.distributions.log_normal import LogNormal
 
 import numpy as np
 import matplotlib.pyplot as plt
+import datetime
 
 import advi
 
@@ -15,8 +16,7 @@ def log_prior_plus_logabsdet_J(real_params, params):
     lp_b = Normal(0, 1).log_prob(real_params['beta']).sum()
 
     # log prior sig + log jacobian
-    lp_log_sig = LogNormal(0, 1).log_prob(params['sig']) + real_params['sig']
-    lp_log_sig = lp_log_sig.sum()
+    lp_log_sig = (Gamma(1, 1).log_prob(params['sig']) + real_params['sig']).sum()
 
     return lp_b + lp_log_sig
 
@@ -54,7 +54,7 @@ if __name__ == '__main__':
     x = torch.stack([torch.ones(N), torch.randn(N)], -1)
     k = x.shape[1]
     beta = torch.tensor([2., -3.])
-    sig = torch.tensor([0.5])
+    sig = 0.5
     y = Normal(x.matmul(beta), sig).rsample()
 
     # Plot data
@@ -64,8 +64,9 @@ if __name__ == '__main__':
     optimizer = torch.optim.Adam([model_params[key].vp for key in model_params], lr=.1)
     elbo_hist = []
 
-    max_iter = 10000
+    max_iter = 5000
     minibatch_size = 100
+    torch.manual_seed(1)
     for t in range(max_iter):
         sample_with_replacement = minibatch_size > N
         idx = np.random.choice(N, minibatch_size, replace=sample_with_replacement)
@@ -76,23 +77,18 @@ if __name__ == '__main__':
         optimizer.step()
 
         if (t + 1) % (max_iter / 10) == 0:
-            print('iteration: {}/{} | elbo: {}'.format(t + 1, max_iter, elbo_hist[-1]))
+            now = datetime.datetime.now()
+            print('{} | {}/{} | elbo: {}'.format(now, t + 1, max_iter, elbo_hist[-1]))
 
 
     # Inspect posterior
     nsamps = 1000
-    beta_post = model_params['beta'].rsample([nsamps]).detach().numpy()
-    sig_post = model_params['sig'].rsample([nsamps]).exp().detach().numpy()
 
     plt.plot(elbo_hist)
     plt.show()
 
-    plt.hist(beta_post[:, 0])
-    plt.hist(beta_post[:, 1])
-    plt.show()
-
-    plt.hist(sig_post)
-    plt.axvline(sig_post.mean(), color='black', linestyle='--')
-    plt.axvline(np.percentile(sig_post, 2.5), color='black', linestyle='--')
-    plt.axvline(np.percentile(sig_post, 97.5), color='black', linestyle='--')
-    plt.show()
+    sig_post = model_params['sig'].rsample([nsamps]).exp().detach().numpy()
+    print('sig mean: {} | sig sd: {}'.format(sig_post.mean(), sig_post.std()))
+    print('beta mean: {}'.format(model_params['beta'].vp[0].detach().numpy()))
+    print('beta sd: {}'.format(model_params['beta'].vp[1].exp().detach().numpy()))
+    
