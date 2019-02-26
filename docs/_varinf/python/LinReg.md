@@ -1,23 +1,33 @@
 
-## Model
+## Intro 
 
-I'll demonstrate how to fit a linear model using ADVI in this tutorial. Note that
+In this post, I'll demonstrate how to fit a linear model using ADVI in this tutorial. Note that
 the source code for the `advi.ModelParam` class and this jupyter notebook is
 included at the bottom of this site.
 
+ADVI is a way of implementing variational inference without having to manually compute derivaties, 
+in the presence of automatic differentiation libraries. It is typically faster, and easier to implement
+than tradititional MCMC methods. While, MCMC is still considered the gold standard in Bayesian applications,
+variational inference enables the exploration of many models quickly. PyTorch is a great python library 
+for these types of implementations, as it supports the creation of complex computational graphs and automatic 
+differentiation.
+
+***
+
+## Implementation
 
 This cell contains the libraries we will need.
 The only note-worthy import is `advi` (link below), which contains a single class called `ModelParam`.
 You'll note that `ModelParam` holds `vp` (a tensor) and `size`, which is the dimensions of the model parameters.
 On initialization, this object creates the variational parameters -- a mean and a logged-standard deviation to a
-Normal distribution. These parameters are optimized until the ELBO is minimized. The SD is logged so that 
+Normal distribution. These parameters are optimized until the ELBO is maximized. The SD is logged so that 
 it can be opimized in an unconstrained fashion. Recall that in ADVI, the variational distribution is placed 
 on model parameters transformed to the real space. The advantages enjoyed by doing so include (1) being able
 to reparameterize the distribution so as to sample from a parameter free (standard Normal) distribution, 
 to take the gradients of random draws from the variational distribution; and (2) modelling correlation
 between parameters, if desired.
 
-I also included a helper function `Timer`, with is in the file `Timer`.
+I also included a helper function `Timer`, which is in the file `Timer`.
 
 I may expound on ADVI later, but for now, refer to the ADVI paper for more details...
 
@@ -38,13 +48,13 @@ import Timer
 torch.set_default_dtype(torch.float64)
 ```
 
-The linear model is this.
+The linear model is:
 
 $$
 \begin{split}
-y_i \mid \sigma, \beta &\sim \text{Normal}(\beta_0 + \beta_1 x_i, \sigma) \\
+y_i \mid \sigma, \beta &\sim \text{Normal}(\beta_0 + \beta_1 x_i, \sigma), \text{ for } i = 1,\cdots, N\\
 \beta_k &\sim \text{Normal}(0, 1), \text{ for } k = 0, 1 \\
-\sigma &\sim \text{Gamma}(1, 1) \\
+\sigma &\sim \text{Gamma}(1, 1). \\
 \end{split}
 $$
 
@@ -61,8 +71,9 @@ We encode this in the following cells. Note that we need to implement
     - transform the real-valued parameters to their support (in this case only sigma needs to be exponentiated).
     - Exaluate: ELBO = (1) + (2) - (3)
 
-One more thing to note here is that I multiplied the likelihood by the size of the full data divided by the size of the current data (hence the `mean(0)` in the return line of `loglike`).
-This is because I am using stochastic variational inference, in which minibatches are employed. This can lead to huge speed-ups when analyzing large data-sets.
+One more thing to note here is that I multiplied the likelihood by the size of the full data, and divided by the size of the
+current data (hence the `mean(0)` in the return line of `loglike`). This enables stochastic variational inference, in
+which minibatches are employed. This can lead to huge speed-ups when analyzing large data-sets.
 
 
 ```python

@@ -1,5 +1,7 @@
 .PHONY: clean serve clean_serve
 
+all: clean_serve
+
 clean:
 	rm -rf _site
 
