@@ -1,1 +1,10 @@
 theme: jekyll-theme-slate
+permalink: /:title #pretty
+
+# http://jekyllrb.com/docs/collections/
+collections:
+  varinf:
+    output: true
+    permalink: /varinf/:path/
+
+
