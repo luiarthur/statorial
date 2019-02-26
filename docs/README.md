@@ -1,4 +1,4 @@
-This site contains example-implementations of common Bayesian methods, including:
+Hi! This site contains example-implementations of common Bayesian methods, including:
 
 {% for page in site.pages %}
 {% if page.title %}
