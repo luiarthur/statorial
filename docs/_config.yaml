@@ -1,6 +1,10 @@
-# theme: jekyll-theme-slate
-theme: jekyll-theme-cayman
-permalink: /:title #pretty
+# Site settings
+title: Statorial
+description: Tutorials on implementing statistical methods
+
+# Build settings
+markdown: kramdown
+permalink: /:title
 
 # http://jekyllrb.com/docs/collections/
 collections:

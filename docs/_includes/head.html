@@ -1,8 +1,18 @@
 <head>
-  <meta charset='utf-8'>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width,maximum-scale=2">
-  <link rel="stylesheet" type="text/css" media="screen" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
-{% seo %}
-</head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,maximum-scale=2">
 
+    <title>{% if page.title %}{{ page.title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+
+    <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="{{ "/assets/css/bootstrap.min.css" | prepend: site.baseurl }}">
+    <link rel="stylesheet" href="{{ "/assets/css/rouge-github.css" | prepend: site.baseurl }}">
+
+    <script src="{{ "/assets/js/jquery.min.js" | prepend: site.baseurl}}"></script>
+    <script src="{{ "/assets/js/bootstrap.min.js" | prepend: site.baseurl}}"></script>
+    <script src="{{ "/assets/js/disqus.js" | prepend: site.baseurl}}"></script>
+</head>
