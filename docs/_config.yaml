@@ -1,4 +1,5 @@
-theme: jekyll-theme-slate
+# theme: jekyll-theme-slate
+theme: jekyll-theme-cayman
 permalink: /:title #pretty
 
 # http://jekyllrb.com/docs/collections/
@@ -7,4 +8,9 @@ collections:
     output: true
     permalink: /varinf/:title/
 
-
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      comments: on

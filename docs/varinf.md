@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Variational Inference"
+description: "via PyTorch"
 inNav: on
 ---
 
