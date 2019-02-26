@@ -11,3 +11,10 @@ inNav: on
   {% endif %}
 {% endfor %}
 
+***
+
+The flavor of variational inference I will discuss in these posts are Automatic
+Differentiation Variational Inference ([ADVI][1]).
+
+
+[1]: https://arxiv.org/pdf/1603.00788.pdf

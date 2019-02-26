@@ -1,12 +1,3 @@
----
-layout: default
-title: Linear Regression
-lang: "python"
-relative_links:
-  enabled:     true
----
-
-```python
 import torch
 
 # Set default type to float64 (instead of float32)
@@ -15,11 +6,6 @@ torch.set_default_dtype(torch.float64)
 # Model parameter
 class ModelParam():
     def __init__(self, size, m=None, log_s=None):
-        """
-        Initialize variational parameters of model parameters by 
-        specifying their size, or their mean and log of their 
-        standard deviations.
-        """
         if m is None:
             m = torch.randn(size)
 
@@ -31,22 +17,16 @@ class ModelParam():
         self.size = size
 
     def dist(self):
-        """
-        Return the variational distribution.
-        """
         return torch.distributions.Normal(self.vp[0], self.vp[1].exp())
 
     def rsample(self, n=torch.Size([])):
-        """
-        Sample from a (parameter-free) standard normal.
-        """
+        # NOTE: The same as:
+        # self.vp[0] + torch.randn(n) * self.vp[1].exp()
+        # Note that the random number is sampled from a (parameter-free)
+        # standard normal.
         return self.dist().rsample(n)
 
     def log_q(self, real):
-        """
-        Compute log of the variational density evaluated at some
-        real value.
-        """
         return self.dist().log_prob(real).sum()
-```
-[advi.py]({{ site.baseurl }}{% link /assets/varinf/pytorch/advi.py %})
+
+

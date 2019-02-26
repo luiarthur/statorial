@@ -5,6 +5,6 @@ permalink: /:title #pretty
 collections:
   varinf:
     output: true
-    permalink: /varinf/:path/
+    permalink: /varinf/:title/
 
 
