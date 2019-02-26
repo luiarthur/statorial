@@ -7,7 +7,7 @@ inNav: on
 ### Variational Inference with PyTorch
 {% for notes in site.varinf %}
   {% if notes.lang == "python" %}
-  - [{{ notes.date | date: "%-d %b, %Y"}}&raquo; {{notes.title}}]({{notes.url}})
+  - [{{ notes.date | date: "%-d %b, %Y"}}&raquo; {{notes.title}}]({{notes.url | prepend: site.baseurl}})
   {% endif %}
 {% endfor %}
 
