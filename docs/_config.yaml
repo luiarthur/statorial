@@ -1,5 +1,7 @@
 theme: jekyll-theme-slate
 permalink: /:title #pretty
+baseurl: ""
+url: "http://luiarthur.github.io/statorial"
 
 # http://jekyllrb.com/docs/collections/
 collections:
