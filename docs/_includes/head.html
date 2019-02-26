@@ -16,4 +16,33 @@
     <script src="{{ "/assets/js/jquery.min.js" | prepend: site.baseurl}}"></script>
     <script src="{{ "/assets/js/bootstrap.min.js" | prepend: site.baseurl}}"></script>
     <script src="{{ "/assets/js/disqus.js" | prepend: site.baseurl}}"></script>
+   
+    {% if page.math %}
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: {
+          equationNumbers: {
+            autoNumber: "AMS"
+          }
+        },
+        tex2jax: {
+          inlineMath: [ ['$','$'] ],
+          displayMath: [ ['$$','$$'] ],
+          processEscapes: true,
+        },
+        Macros: {
+          p: ["{\\left(#1\\right)}",1],
+          bk: ["{\\left[#1\\right]}",1],
+          bc: ["{\\{#1\\}}",1],
+          abs: ["{\\left|#1\\right|}",1],
+          ds: [" \\displaystyle "]
+        }
+      });
+    </script>
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
+    {% endif %}
+
+
+
+
 </head>
