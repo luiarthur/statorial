@@ -35,7 +35,6 @@ I may expound on ADVI later, but for now, refer to the [ADVI paper](https://arxi
 ```python
 import torch
 from torch.distributions import Normal, Gamma
-from torch.distributions.log_normal import LogNormal
 
 import numpy as np
 import matplotlib.pyplot as plt
