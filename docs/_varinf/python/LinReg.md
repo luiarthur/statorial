@@ -29,7 +29,7 @@ between parameters, if desired.
 
 I also included a helper function `Timer`, which is in the file `Timer`.
 
-I may expound on ADVI later, but for now, refer to the ADVI paper for more details...
+I may expound on ADVI later, but for now, refer to the [ADVI paper](https://arxiv.org/pdf/1603.00788.pdf) for more details...
 
 
 ```python
@@ -69,7 +69,7 @@ We encode this in the following cells. Note that we need to implement
           and then multiply the sd of the variational parameter to the standard Normal, 
           and then add the variational parameter's mean.
     - transform the real-valued parameters to their support (in this case only sigma needs to be exponentiated).
-    - Exaluate: ELBO = (1) + (2) - (3)
+    - Evaluate: ELBO = (1) + (2) - (3)
 
 One more thing to note here is that I multiplied the likelihood by the size of the full data, and divided by the size of the
 current data (hence the `mean(0)` in the return line of `loglike`). This enables stochastic variational inference, in
@@ -157,7 +157,7 @@ You need to manually set the gradients to zero before computing the gradients (i
 of the library is to accumulate gradients. `loss.backward()` signals the gradient computation. `optimzier.step()` signals
 the modification of the (variational) parameters based on the gradients.
 
-I print out statements to show the progression of the model fitting. As you can see, it takes only a few second to get descent results.
+I print out statements to show the progression of the model fitting. As you can see, it takes only a few second to get decent results.
 
 
 ```python
