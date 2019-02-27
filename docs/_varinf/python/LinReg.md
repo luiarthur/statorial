@@ -2,8 +2,8 @@
 ## Intro 
 
 In this post, I'll demonstrate how to fit a linear model using ADVI in this tutorial. Note that
-the source code for the `advi.ModelParam` class and this jupyter notebook is
-included at the bottom of this site.
+the link to the repository containing the `advi.ModelParam` class and this jupyter notebook is
+included above.
 
 ADVI is a way of implementing variational inference without having to manually compute derivaties, 
 in the presence of automatic differentiation libraries. It is typically faster, and easier to implement
