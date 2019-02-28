@@ -8,4 +8,6 @@ move:
 	mv LinReg.html $(PATH_TO_VARINF_PY)
 
 linreg:
-	jupyter-nbconvert LinReg.ipynb --to=html --template=basic --config=nb_config.py
+	jupyter-nbconvert LinReg.ipynb --to=html --template=basic \
+		--HTMLExporter.anchor_link_text=' ' \
+		--TemplateExporter.exclude_input_prompt=True
