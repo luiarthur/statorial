@@ -6,6 +6,8 @@ google_analytics: UA-135308301-1
 plugins:
   # search engine optimization
   - jekyll-seo-tag
+  # create sitemap
+  - jekyll-sitemap
 
 # Build settings
 markdown: kramdown
