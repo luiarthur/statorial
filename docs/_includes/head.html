@@ -33,19 +33,24 @@
         TeX: {
           equationNumbers: {
             autoNumber: "AMS"
+          },
+          Macros: {
+            argmin: ["{\\underset{#1}{\\operatorname{argmin}}}",1],
+            argmax: ["{\\underset{#1}{\\operatorname{argmax}}}",1],
+            KL: "\\operatorname{KL}",
+            E: "\\operatorname{E}",
+            elbo: "\\operatorname{ELBO}",
+            p: ["{\\left(#1\\right)}",1],
+            bk: ["{\\left[#1\\right]}",1],
+            bc: ["{\\{#1\\}}",1],
+            abs: ["{\\left|#1\\right|}",1],
+            ds: [" \\displaystyle "]
           }
         },
         tex2jax: {
           inlineMath: [ ['$','$'] ],
           displayMath: [ ['$$','$$'] ],
           processEscapes: true,
-        },
-        Macros: {
-          p: ["{\\left(#1\\right)}",1],
-          bk: ["{\\left[#1\\right]}",1],
-          bc: ["{\\{#1\\}}",1],
-          abs: ["{\\left|#1\\right|}",1],
-          ds: [" \\displaystyle "]
         }
       });
     </script>
