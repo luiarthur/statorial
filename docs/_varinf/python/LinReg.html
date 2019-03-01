@@ -4,7 +4,7 @@
 <h2 id="Intro">Intro<a class="anchor-link" href="#Intro"> </a></h2><p>In this post, I'll demonstrate how to fit a linear model using ADVI in this tutorial. Note that
 the link to the repository containing the <code>advi.ModelParam</code> class and this jupyter notebook is
 included above.</p>
-<p>ADVI is a way of implementing variational inference without having to manually compute derivaties, 
+<p>ADVI is a way of implementing variational inference without having to manually compute derivatives, 
 in the presence of automatic differentiation libraries. It is typically faster, and easier to implement
 than tradititional MCMC methods. While, MCMC is still considered the gold standard in Bayesian applications,
 variational inference enables the exploration of many models quickly. PyTorch is a great python library 
@@ -22,10 +22,10 @@ The only note-worthy import is <code>advi</code> (link below), which contains a 
 You'll note that <code>ModelParam</code> holds <code>vp</code> (a tensor) and <code>size</code>, which is the dimensions of the model parameters.
 On initialization, this object creates the variational parameters -- a mean and a logged-standard deviation to a
 Normal distribution. These parameters are optimized until the ELBO is maximized. The SD is logged so that 
-it can be opimized in an unconstrained fashion. Recall that in ADVI, the variational distribution is placed 
+it can be optimized in an unconstrained fashion. Recall that in ADVI, the variational distribution is placed 
 on model parameters transformed to the real space. The advantages enjoyed by doing so include (1) being able
-to reparameterize the distribution so as to sample from a parameter free (standard Normal) distribution, 
-to take the gradients of random draws from the variational distribution; and (2) modelling correlation
+to re-parameterize the distribution so as to sample from a parameter free (standard Normal) distribution, 
+to take the gradients of random draws from the variational distribution; and (2) modeling correlation
 between parameters, if desired.</p>
 <p>I also included a helper function <code>Timer</code>, which is in the file <code>Timer</code>.</p>
 <p>I may expound on ADVI later, but for now, refer to the <a href="https://arxiv.org/pdf/1603.00788.pdf">ADVI paper</a> for more details...</p>
@@ -220,7 +220,7 @@ We compute the loss (as torch minimizes objectives) by computing the negative of
 Dividing the elbo by $N$ allows us to use a larger learning rate (<code>lr</code>). This is not a huge deal, but most of the time, I can
 just use a default learning rate of 0.1 by scaling the ELBO.</p>
 <p>You need to manually set the gradients to zero before computing the gradients (in <code>loss.backward()</code>, as the default behavior 
-of the library is to accumulate gradients. <code>loss.backward()</code> signals the gradient computation. <code>optimzier.step()</code> signals
+of the library is to accumulate gradients. <code>loss.backward()</code> signals the gradient computation. <code>optimizer.step()</code> signals
 the modification of the (variational) parameters based on the gradients.</p>
 <p>I print out statements to show the progression of the model fitting. As you can see, it takes only a few second to get decent results.</p>
 
@@ -268,17 +268,17 @@ the modification of the (variational) parameters based on the gradients.</p>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>2019-02-26 13:36:54.626180 | 300/3000 | elbo: -1.0809662443934889
-2019-02-26 13:36:54.997319 | 600/3000 | elbo: -0.9788739108056087
-2019-02-26 13:36:55.364701 | 900/3000 | elbo: -0.787416569401845
-2019-02-26 13:36:55.732011 | 1200/3000 | elbo: -0.6659829367538607
-2019-02-26 13:36:56.102313 | 1500/3000 | elbo: -0.9046671115373425
-2019-02-26 13:36:56.460770 | 1800/3000 | elbo: -0.7568028262801675
-2019-02-26 13:36:56.825772 | 2100/3000 | elbo: -0.8323859598019949
-2019-02-26 13:36:57.194016 | 2400/3000 | elbo: -0.7649339142340957
-2019-02-26 13:36:57.562226 | 2700/3000 | elbo: -0.7485436957245089
-2019-02-26 13:36:57.950545 | 3000/3000 | elbo: -0.8149846174077103
-LinReg time: 4s
+<pre>2019-02-28 16:12:32.390249 | 300/3000 | elbo: -1.0809662443934889
+2019-02-28 16:12:33.549917 | 600/3000 | elbo: -0.978873910805609
+2019-02-28 16:12:34.715162 | 900/3000 | elbo: -0.787416569401845
+2019-02-28 16:12:35.926353 | 1200/3000 | elbo: -0.6659829367538607
+2019-02-28 16:12:37.042328 | 1500/3000 | elbo: -0.9046671115373424
+2019-02-28 16:12:38.163524 | 1800/3000 | elbo: -0.7568028262801675
+2019-02-28 16:12:39.260238 | 2100/3000 | elbo: -0.8323859598019949
+2019-02-28 16:12:40.346807 | 2400/3000 | elbo: -0.7649339142340951
+2019-02-28 16:12:41.385058 | 2700/3000 | elbo: -0.7485436957245093
+2019-02-28 16:12:42.506349 | 3000/3000 | elbo: -0.8149846174077104
+LinReg time: 12s
 </pre>
 </div>
 </div>
@@ -353,7 +353,7 @@ LinReg time: 4s
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We inspect the statistics of the posterior in this cell.
-The posterior mean and sd are printed. They are consistent with the true values.</p>
+The posterior mean and SD are printed. They are consistent with the true values.</p>
 
 </div>
 </div>
@@ -394,7 +394,7 @@ beta mean: [ 1.99261651 -3.08685974]
 beta sd: [0.02348989 0.01433442]
 
 True sigma: 0.5
-sig mean: 0.5246806551477153 | sig sd: 0.025474980282757603
+sig mean: 0.5256423399977372 | sig sd: 0.026223147912179338
 </pre>
 </div>
 </div>
