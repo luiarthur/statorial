@@ -5,6 +5,8 @@ description: "with PyTorch"
 inNav: on
 ---
 
+<!-- sorting: https://gist.github.com/Phlow/1f27dfafdf2bbcc5c48e -->
+
 # Variational Inference with PyTorch
 
 {% for notes in site.varinf %}
