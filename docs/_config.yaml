@@ -3,6 +3,10 @@ title: Statorial
 description: Tutorials on implementing statistical methods
 google_analytics: UA-135308301-1
 
+plugins:
+  # search engine optimization
+  - jekyll-seo-tag
+
 # Build settings
 markdown: kramdown
 permalink: /:title
