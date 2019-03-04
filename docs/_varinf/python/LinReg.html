@@ -18,7 +18,7 @@ differentiation.</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Implementation">Implementation<a class="anchor-link" href="#Implementation"> </a></h2><p>This cell contains the libraries we will need.
-The only note-worthy import is <code>advi</code> (link below), which contains a single class called <code>ModelParam</code>.
+The only note-worthy import is <code>advi</code> (see link in cell below), which contains a single class called <code>ModelParam</code>.
 You'll note that <code>ModelParam</code> holds <code>vp</code> (a tensor) and <code>size</code>, which is the dimensions of the model parameters.
 On initialization, this object creates the variational parameters -- a mean and a logged-standard deviation to a
 Normal distribution. These parameters are optimized until the ELBO is maximized. The SD is logged so that 
@@ -27,8 +27,7 @@ on model parameters transformed to the real space. The advantages enjoyed by doi
 to re-parameterize the distribution so as to sample from a parameter free (standard Normal) distribution, 
 to take the gradients of random draws from the variational distribution; and (2) modeling correlation
 between parameters, if desired.</p>
-<p>I also included a helper function <code>Timer</code>, which is in the file <code>Timer</code>.</p>
-<p>I may expound on ADVI later, but for now, refer to the <a href="https://arxiv.org/pdf/1603.00788.pdf">ADVI paper</a> for more details...</p>
+<p>I also included a helper function <code>Timer</code>, which is in the file <code>Timer.py</code>.</p>
 
 </div>
 </div>
@@ -45,6 +44,8 @@ between parameters, if desired.</p>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">datetime</span>
 
+<span class="c1"># These very short scripts are located at:</span>
+<span class="c1"># https://github.com/luiarthur/statorial/tree/master/docs/assets/varinf/python</span>
 <span class="kn">import</span> <span class="nn">advi</span>
 <span class="kn">import</span> <span class="nn">Timer</span>
 
