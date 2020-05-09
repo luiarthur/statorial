@@ -4,7 +4,8 @@ title: "Statorial"
 inNav: on
 ---
 
-Hi! This site contains example-implementations of common Bayesian methods, including:
+Hi! This site contains example-implementations of common Bayesian methods,
+including:
 
 {% for page in site.pages %}
 {% if page.title %}
@@ -17,5 +18,4 @@ Hi! This site contains example-implementations of common Bayesian methods, inclu
 Eventually, I would like to include:
 - Adaptive MCMC
 - Hamiltonian Monte Carlo
-
 
