@@ -1,8 +1,9 @@
 ---
 layout: page
-title: "Statorial"
 inNav: on
 ---
+
+# Statorial
 
 Hi! This site contains example-implementations of common Bayesian methods,
 including:
