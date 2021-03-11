@@ -111,11 +111,11 @@ between parameters, if desired.</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The linear model is:</p>
 $$
-\begin{split}
+\begin{aligned}
 y_i \mid \sigma, \beta &amp;\sim \text{Normal}(\beta_0 + \beta_1 x_i, \sigma), \text{ for } i = 1,\cdots, N\\
 \beta_k &amp;\sim \text{Normal}(0, 1), \text{ for } k = 0, 1 \\
 \sigma &amp;\sim \text{Gamma}(1, 1). \\
-\end{split}
+\end{aligned}
 $$<p>We encode this in the following cells. Note that we need to implement</p>
 <ol>
 <li>log-likelihood</li>

@@ -1,6 +1,5 @@
 ---
 layout: page
-inNav: on
 ---
 
 # Statorial

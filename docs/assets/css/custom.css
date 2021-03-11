@@ -1,18 +1,57 @@
-div#footer_wrap {
-  padding: 20px;
+:root {
+  --main-font-family: 'Open Sans', sans-serif;
+  --main-font-weight: 300;
+  --main-bold-font-weight: 400;
+  --main-font-size: 26px;
 }
-
+div#disqus_thread {
+  margin-top: 100px;
+}
 /* font stuff */
-body, h1, h2, h3, h4, h5, h6 {
-  font-family: 'Roboto', sans-serif;
+body {
+  font-family: var(--main-font-family);
+  color: black;
 }
 h1, h2, h3, h4, h5, h6 {
-  font-weight: 400;
-  padding-top: 30px;
-  padding-bottom: 10px;
+  color: black;
+  font-family: var(--main-font-family);
+  font-weight: var(--main-bold-font-weight);
+  padding-bottom: calc(var(--main-font-size) * 0.4);
+  padding-top: calc(var(--main-font-size) * 0.4);
 }
-strong { font-weight: 400; }
+h1 { font-size: calc(var(--main-font-size) / .50); }
+h2 { font-size: calc(var(--main-font-size) / .60); }
+h3 { font-size: calc(var(--main-font-size) / .70); }
+h4 { font-size: calc(var(--main-font-size) / .80); }
+h5 { font-size: calc(var(--main-font-size) / .90); }
+h6 { font-size: calc(var(--main-font-size) / .95); }
+strong { font-weight: var(--main-bold-font-weight); }
 body {
-  font-size: 21px;
-  font-weight: 300;
+  font-size: var(--main-font-size);
+  font-weight: var(--main-font-weight);
+}
+footer {
+  font-size: calc(var(--main-font-size) * 0.7);
+}
+.highlight {
+  padding: calc(var(--main-font-size) * 0.4);
+  border-radius: calc(var(--main-font-size) * 0.4);
+}
+code { /* inline code */
+  color: #c7254e;
+  background-color: #f9f2f4;
+}
+/* jupyter notebook */
+.highlight pre,
+.output_subarea pre {
+  padding: calc(var(--main-font-size) * 0.4);
+  border-radius: calc(var(--main-font-size) * 0.4);
+}
+.output_subarea pre {
+  color: black;
+  background-color: #f9f2f4;
+  font-size: calc(var(--main-font-size) * 0.7);
+}
+div.highlight pre {
+  font-size: calc(var(--main-font-size) * 0.7);
 }
